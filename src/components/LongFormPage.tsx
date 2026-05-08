@@ -1,10 +1,26 @@
 import Link from "next/link";
-import type { LongFormContent } from "@/lib/long-tail-content";
 import { siteConfig, type Lang } from "@/lib/site.config";
 import { t } from "@/lib/copy";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { PageCTA } from "@/components/PageCTA";
+
+// Long-form-page content shape. Defined here (not in a separate lib) so the
+// component is self-contained — niche-specific guides (e.g. mattress
+// disposal, post-renovation cleanup) can import this type and supply data
+// matching it without needing a shared library.
+export interface LongFormSection {
+  heading: string;
+  paragraphs: string[];
+}
+
+export interface LongFormContent {
+  title: string;
+  metaDescription: string;
+  intro: string;
+  sections: LongFormSection[];
+  closing: string;
+}
 
 interface Props {
   lang: Lang;
