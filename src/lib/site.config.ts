@@ -67,12 +67,12 @@ export const siteConfig: SiteConfig = {
   "address": "Gatineau, QC",
   "primaryLang": "fr",
   "secondaryLang": "en",
-  "heroImage": "/hero/main.png",
+  "heroImage": "/hero/couvreur-gatineau.webp",
   "serviceImages": [
-    "/hero/service-1.png",
-    "/hero/service-2.png",
-    "/hero/service-3.png",
-    "/hero/service-4.png"
+    "/hero/refection-toiture-gatineau.webp",
+    "/hero/reparation-toiture-gatineau.webp",
+    "/hero/toiture-commerciale-gatineau.webp",
+    "/hero/inspection-toiture-gatineau.webp"
   ],
   "locationNames": [
     "Hull",
