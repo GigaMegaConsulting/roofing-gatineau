@@ -1,0 +1,36 @@
+[
+  {
+    "filename": "main.png",
+    "size": "1536x1024",
+    "prompt": "A real-looking professional photograph of a roofer in safety harness installing asphalt shingles on a sloped residential roof in a Quebec suburban neighborhood. Hands-on work, hammer mid-swing, nail gun and asphalt shingles visible, blue sky with light clouds, late-morning light. Photographic, natural lighting, shallow depth of field, no text, no logos, no watermarks.",
+    "role": "hero"
+  },
+  {
+    "filename": "service-1.png",
+    "size": "1024x1024",
+    "prompt": "A real-looking professional photograph of a roofer tearing off old asphalt shingles to expose the roof deck of a residential home. Bundles of new shingles waiting on the roof, dump trailer below, midday natural light. Hands-on, action shot, photographic, no text, no logos, no watermarks.",
+    "role": "service",
+    "serviceTitle": "Réfection de toiture"
+  },
+  {
+    "filename": "service-2.png",
+    "size": "1024x1024",
+    "prompt": "A real-looking professional photograph of a roofer kneeling on a roof patching a damaged section near a flashing detail at a chimney. Tools and sealant visible, focus on hands and the repair itself. Photographic, natural lighting, shallow depth of field, no text, no logos, no watermarks.",
+    "role": "service",
+    "serviceTitle": "Réparation de toiture"
+  },
+  {
+    "filename": "service-3.png",
+    "size": "1024x1024",
+    "prompt": "A real-looking professional photograph of a flat commercial roof being installed: a worker rolling out a TPO or modified-bitumen membrane near rooftop HVAC units on a low-slope commercial building. Industrial setting, clear sky. Photographic, natural lighting, no text, no logos, no watermarks.",
+    "role": "service",
+    "serviceTitle": "Toiture commerciale et industrielle"
+  },
+  {
+    "filename": "service-4.png",
+    "size": "1024x1024",
+    "prompt": "A real-looking professional photograph of a roof inspector with clipboard and measuring tape on a residential roof, examining a vent boot and flashing. Close-up on hands and clipboard, shingles in focus. Photographic, natural lighting, shallow depth of field, no text, no logos, no watermarks.",
+    "role": "service",
+    "serviceTitle": "Inspection de toiture"
+  }
+]

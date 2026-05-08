@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  --color-bg: #ffffff;
+  --color-text: #0a0a0a;
+  --color-muted: #5a5a5a;
+  --color-border: #e6e6e6;
+  --color-soft: #f5f5f5;
+  --color-cta: #16a34a;       /* used only for the "Free Quote" banner accent */
+  --color-cta-hover: #15803d;
+  --color-call: #000000;       /* CALL NOW buttons are black, not green */
+  --color-call-hover: #1a1a1a;
+}
+
+@theme inline {
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Layered so utility classes (text-white etc.) override on a tags.
+   Unlayered rules win over @layer utilities, so this MUST be in @layer base. */
+@layer base {
+  a { color: inherit; }
+}
+
+/* H2/H3 use a slightly thinner serif-ish display feel via system fonts.
+   No external font load — kept fast. */
+.font-display {
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Old-school chrome phone graphic — silver beveled look on a near-black plate.
+   Gradient stops are kept light across the full height so the digits stay
+   readable; the dark plate underneath gives the chrome its contrast. */
+.phone-chrome {
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  font-family: "Impact", "Haettenschweiler", "Arial Narrow Bold", sans-serif;
+  background: linear-gradient(180deg, #ffffff 0%, #ededed 48%, #b8b8b8 52%, #f5f5f5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.55);
+  border: 2px solid #5a5a5a;
+  padding: 6px 12px;
+  border-radius: 4px;
+  display: inline-block;
+  background-color: #0a0a0a;
+}
