@@ -42,11 +42,18 @@ function buildTwiml(): string {
   const e164 = siteConfig.phone.replace(/[^+\d]/g, "");
 
   if (mode === "voicemail") {
-    // Bilingual greeting: French first (site's primary lang), then English. Each
-    // language uses a Polly voice tuned for it so accents are correct. Twilio
-    // plays stacked <Say> verbs in order before the <Record> beep.
-    const greetingFr = "Bonjour, vous avez bien rejoint notre service de débarras à Gatineau. Laissez-nous votre nom, votre adresse et la nature de votre demande après le bip.";
-    const greetingEn = "Hello, you have reached our Gatineau junk removal service. After the beep, please leave your name, address, and what you need.";
+    // Bilingual greeting. Each language uses a Polly voice tuned for it so
+    // accents are correct. Twilio plays stacked <Say> verbs in order before
+    // the <Record> beep.
+    //
+    // Niche-agnostic by referencing the per-language brand name (set in
+    // siteConfig). Examples that result:
+    //   "Bonjour, vous avez bien rejoint Couvreur Gatineau. ..."
+    //   "Bonjour, vous avez bien rejoint Débarras Gatineau. ..."
+    const brandFr = siteConfig.fr?.brandName || siteConfig.city;
+    const brandEn = siteConfig.en?.brandName || siteConfig.city;
+    const greetingFr = `Bonjour, vous avez bien rejoint ${brandFr}. Laissez-nous votre nom, votre adresse et la nature de votre demande après le bip.`;
+    const greetingEn = `Hello, you have reached ${brandEn}. After the beep, please leave your name, address, and what you need.`;
     const farewellFr = "Merci, nous vous rappellerons sous peu.";
     const farewellEn = "Thanks, we will get back to you shortly.";
 
