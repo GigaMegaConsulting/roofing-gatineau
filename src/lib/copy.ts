@@ -39,7 +39,7 @@ const STRINGS = {
     contactByEmail: "Par courriel :",
     quickResponse: "Réponse rapide • Estimation gratuite",
     faq: "Questions fréquentes",
-    faqIntro: "Tout ce qu'il faut savoir avant de réserver un débarras.",
+    faqIntro: "Tout ce qu'il faut savoir avant de demander une soumission.",
   },
   en: {
     home: "Home",
@@ -78,7 +78,7 @@ const STRINGS = {
     contactByEmail: "By email:",
     quickResponse: "Fast response • Free estimate",
     faq: "Frequently Asked Questions",
-    faqIntro: "Everything you need to know before booking a junk removal.",
+    faqIntro: "Everything you need to know before requesting a quote.",
   },
 } as const;
 
