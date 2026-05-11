@@ -63,7 +63,7 @@ export const siteConfig: SiteConfig = {
   "domain": "gatineaucouvreur.com",
   "phone": "+18193074807",
   "phoneDisplay": "(819) 307-4807",
-  "email": "leads@gatineaucouvreur.com",
+  "email": "info@gatineaucouvreur.com",
   "address": "Gatineau, QC",
   "primaryLang": "fr",
   "secondaryLang": "en",
