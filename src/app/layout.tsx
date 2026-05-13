@@ -92,11 +92,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     },
   };
 
+  // GA4 / gtag injected only when NEXT_PUBLIC_GA_ID is set on the Vercel
+  // env vars for this site (e.g. NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX). Keeps
+  // dev builds analytics-free without conditionals, and lets each site
+  // have its own GA4 property without code changes.
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
   return (
     <html lang={siteConfig.primaryLang}>
       <body>
         {children}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ldJson) }} />
+        {gaId && (
+          <>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${gaId}', { anonymize_ip: true });`,
+              }}
+            />
+          </>
+        )}
       </body>
     </html>
   );
