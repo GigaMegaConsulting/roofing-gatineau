@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 import { siteConfig } from "@/lib/site.config";
 
 // Lead intake endpoint. On every form submission it:
@@ -10,20 +10,22 @@ import { siteConfig } from "@/lib/site.config";
 //      doesn't.
 //   3. Embeds a machine-readable JSON blob in the owner notification so
 //      mission-control can parse leads out of the inbox (it reads the
-//      hello@gigamega.ca mailbox over IMAP — no shared DB needed since
-//      mission-control runs locally and the sites run on Vercel).
+//      owner mailbox over IMAP — no shared DB needed since mission-control
+//      runs locally and the sites run on Vercel).
+//
+// Mail is sent through Gmail SMTP so it comes from a real branded address
+// (info@<domain>, a verified send-as alias on the Workspace account).
 //
 // Env vars (set on the Vercel project):
-//   RESEND_API_KEY   — Resend API key (required to send anything)
-//   LEAD_TO_EMAIL    — owner inbox for lead notifications (default below)
-//   LEAD_FROM_EMAIL  — verified sender, e.g. info@<domain>. Until the domain
-//                      is verified on Resend this must be an @resend.dev
-//                      address; the auto-reply is skipped if it isn't a
-//                      real branded address (we don't want customers
-//                      getting mail from onboarding@resend.dev).
+//   GMAIL_SMTP_USER  — Workspace account that authenticates (e.g. hello@gigamega.ca)
+//   GMAIL_SMTP_PASS  — Google app password for that account
+//   LEAD_FROM_EMAIL  — branded From address, e.g. info@<domain>
+//                      (must be a verified "send mail as" alias on GMAIL_SMTP_USER)
+//   LEAD_TO_EMAIL    — owner inbox for lead notifications
 
 const TO_EMAIL_DEFAULT = "hello@gigamega.ca";
-const FROM_EMAIL_DEFAULT = "onboarding@resend.dev";
+
+export const runtime = "nodejs";
 
 interface LeadPayload {
   firstName?: string;
@@ -63,14 +65,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.error("[lead] RESEND_API_KEY not set — cannot send email");
-    return NextResponse.json({ ok: true, sent: false, reason: "RESEND_API_KEY missing" });
-  }
-
+  const smtpUser = process.env.GMAIL_SMTP_USER;
+  const smtpPass = process.env.GMAIL_SMTP_PASS;
+  const fromEmail = process.env.LEAD_FROM_EMAIL || smtpUser || "";
   const to = process.env.LEAD_TO_EMAIL || TO_EMAIL_DEFAULT;
-  const fromEmail = process.env.LEAD_FROM_EMAIL || FROM_EMAIL_DEFAULT;
+
   const brandName =
     siteConfig[lang]?.brandName ??
     siteConfig[lang === "fr" ? "en" : "fr"]?.brandName ??
@@ -78,6 +77,12 @@ export async function POST(req: NextRequest) {
 
   const createdAt = new Date().toISOString();
   const leadId = `${siteConfig.domain}-${Date.now().toString(36)}`;
+
+  if (!smtpUser || !smtpPass) {
+    console.error("[lead] GMAIL_SMTP_USER/PASS not set — cannot send email");
+    // 200 so the visitor's form still shows success; we log to fix it.
+    return NextResponse.json({ ok: true, leadId, sent: false, reason: "SMTP not configured" });
+  }
 
   // ── Machine-readable record for mission-control (parsed from the inbox).
   const leadJson = JSON.stringify({
@@ -87,7 +92,12 @@ export async function POST(req: NextRequest) {
   });
   const leadBlob = `<!--LEADJSON:${Buffer.from(leadJson).toString("base64")}:LEADJSON-->`;
 
-  const resend = new Resend(apiKey);
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: { user: smtpUser, pass: smtpPass },
+  });
 
   // ── 1. Owner notification ────────────────────────────────────────────
   const notifyHtml = `
@@ -118,7 +128,7 @@ export async function POST(req: NextRequest) {
 
   let notified = false;
   try {
-    const r = await resend.emails.send({
+    await transporter.sendMail({
       from: `${siteConfig.city} Leads <${fromEmail}>`,
       to,
       subject: `Nouveau lead — ${brandName} (${firstName} ${lastName})`.trim(),
@@ -126,21 +136,17 @@ export async function POST(req: NextRequest) {
       text: notifyText,
       replyTo: email || undefined,
     });
-    notified = !r.error;
-    if (r.error) console.error("[lead] notification send error:", r.error);
+    notified = true;
   } catch (err) {
-    console.error("[lead] notification exception:", err);
+    console.error("[lead] notification send error:", err);
   }
 
   // ── 2. Customer auto-acknowledgement ─────────────────────────────────
-  // Only sent when we have (a) a customer email and (b) a real branded
-  // sender — never auto-reply from a generic resend.dev address.
   let autoReplied = false;
-  const senderIsBranded = !fromEmail.endsWith("@resend.dev");
-  if (email && senderIsBranded) {
+  if (email) {
     const ack = buildAck(lang, firstName, comment, brandName, siteConfig.domain, siteConfig.phoneDisplay);
     try {
-      const r = await resend.emails.send({
+      await transporter.sendMail({
         from: `${brandName} <${fromEmail}>`,
         to: email,
         subject: ack.subject,
@@ -148,10 +154,9 @@ export async function POST(req: NextRequest) {
         text: ack.text,
         replyTo: fromEmail,
       });
-      autoReplied = !r.error;
-      if (r.error) console.error("[lead] auto-reply send error:", r.error);
+      autoReplied = true;
     } catch (err) {
-      console.error("[lead] auto-reply exception:", err);
+      console.error("[lead] auto-reply send error:", err);
     }
   }
 
