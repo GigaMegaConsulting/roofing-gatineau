@@ -23,7 +23,11 @@ export function Services({ lang }: Props) {
                 {image ? (
                   <Image
                     src={image}
-                    alt={svc.title}
+                    // Keyword-rich alt for image search + accessibility.
+                    // Format: "<service> à <city> — <brand>". Covers the
+                    // most common Google Images query shape ("<service>
+                    // <city>") without keyword-stuffing.
+                    alt={`${svc.title} à ${siteConfig.city} — ${c.brandName}`}
                     width={1254}
                     height={1254}
                     sizes="(min-width: 768px) 50vw, 100vw"

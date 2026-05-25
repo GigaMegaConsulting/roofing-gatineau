@@ -7,6 +7,7 @@ import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { ServiceArea } from "@/components/ServiceArea";
 import { Testimonials } from "@/components/Testimonials";
+import { Guides } from "@/components/Guides";
 import { Footer } from "@/components/Footer";
 
 interface Props {
@@ -46,6 +47,7 @@ export default async function HomePage({ params }: Props) {
         <Hero lang={validated} />
         <Services lang={validated} />
         <ServiceArea lang={validated} />
+        <Guides lang={validated} />
         <Testimonials lang={validated} />
       </main>
       <Footer lang={validated} />

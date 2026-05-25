@@ -62,11 +62,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     });
 
-    // Long-tail guide pages — populated per-niche by the content-gen pipeline.
-    // Each guide is a route at /[lang]/<slug>/page.tsx + entry in lib/long-tail-content.ts.
-    // The pipeline writes the slugs here when it generates the guides.
-    // (No guides yet — leave the array empty until generate-site fills it.)
-    for (const path of [] as string[]) {
+    // Long-tail guide pages — high-intent informational content targeting
+    // queries Gatineau homeowners actually type into Google. Each one is a
+    // route at /[lang]/<slug>/page.tsx backed by lib/long-tail-content.ts.
+    // Bilingual: same slug serves both FR and EN with different content.
+    for (const path of [
+      "signes-toiture-endommagee",
+      "bardeaux-vs-tole",
+      "inspection-toiture",
+      "fuite-toiture-urgence",
+      "toiture-hiver-quebec",
+      "garantie-toiture",
+      "partenaires",
+    ] as string[]) {
       entries.push({
         url: `${base}/${lang}/${path}`,
         lastModified: now,
