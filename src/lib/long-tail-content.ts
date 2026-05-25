@@ -655,3 +655,46 @@ export function getRoofWinterQuebecGuide(lang: Lang): LongFormContent {
 export function getRoofWarrantyGuide(lang: Lang): LongFormContent {
   return ROOF_WARRANTY[lang];
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Related-guides registry — used by LongFormPage to cross-link long-tail
+// content. The order here matches the homepage Guides component intent
+// (highest-intent first). getRelatedGuides() returns 3 entries excluding
+// the current slug — cheap topical-cluster signal for Google.
+// ─────────────────────────────────────────────────────────────────────────────
+const GUIDE_REGISTRY: Array<{ slug: string; get: (lang: Lang) => LongFormContent }> = [
+  { slug: "fuite-toiture-urgence", get: getRoofLeakEmergencyGuide },
+  { slug: "signes-toiture-endommagee", get: getDamagedRoofSignsGuide },
+  { slug: "inspection-toiture", get: getRoofInspectionGuide },
+  { slug: "bardeaux-vs-tole", get: getShinglesVsMetalGuide },
+  { slug: "garantie-toiture", get: getRoofWarrantyGuide },
+  { slug: "toiture-hiver-quebec", get: getRoofWinterQuebecGuide },
+];
+
+export interface RelatedGuide {
+  slug: string;
+  title: string;
+  metaDescription: string;
+}
+
+export function getRelatedGuides(currentSlug: string, lang: Lang, count = 3): RelatedGuide[] {
+  // Stable deterministic selection: skip the current slug, then take the
+  // next `count` entries (wrapping around). Keeps the related list stable
+  // across builds (good for CWV / cache) while still differing per page.
+  const others = GUIDE_REGISTRY.filter(g => g.slug !== currentSlug);
+  const startIdx = Math.abs(hashCode(currentSlug)) % others.length;
+  const picked: typeof others = [];
+  for (let i = 0; i < count && i < others.length; i++) {
+    picked.push(others[(startIdx + i) % others.length]);
+  }
+  return picked.map(p => {
+    const c = p.get(lang);
+    return { slug: p.slug, title: c.title, metaDescription: c.metaDescription };
+  });
+}
+
+function hashCode(s: string): number {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = ((h << 5) - h + s.charCodeAt(i)) | 0;
+  return h;
+}

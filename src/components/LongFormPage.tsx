@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { siteConfig, type Lang } from "@/lib/site.config";
 import { t } from "@/lib/copy";
+import { getRelatedGuides } from "@/lib/long-tail-content";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { PageCTA } from "@/components/PageCTA";
@@ -32,6 +33,12 @@ interface Props {
 export function LongFormPage({ lang, slug, content, altPath }: Props) {
   const c = siteConfig[lang]!;
   const tt = t(lang);
+
+  // Related-guides cross-links — built from the same registry as the
+  // homepage Guides section. Tells Google these pages form a topical
+  // cluster (each guide reachable from any other in 1-2 hops) instead
+  // of 6 isolated leaf pages.
+  const related = getRelatedGuides(slug, lang, 3);
 
   // Article + BreadcrumbList JSON-LD for rich result eligibility.
   const articleLd = {
@@ -98,6 +105,29 @@ export function LongFormPage({ lang, slug, content, altPath }: Props) {
               </p>
             </div>
           </section>
+
+          {related.length > 0 && (
+            <section className="py-10 md:py-14 bg-[#fafafa] border-t border-[#ededed]">
+              <div className="mx-auto max-w-3xl px-6">
+                <h2 className="font-display text-xl md:text-2xl mb-5 text-[#0a0a0a]">
+                  {lang === "fr" ? "Guides reliés" : "Related guides"}
+                </h2>
+                <ul className="grid md:grid-cols-3 gap-4">
+                  {related.map(r => (
+                    <li key={r.slug}>
+                      <Link
+                        href={`/${lang}/${r.slug}`}
+                        className="block h-full bg-white rounded-md p-4 border border-[#ededed] hover:border-[#16a34a] hover:shadow-sm transition-shadow"
+                      >
+                        <h3 className="font-display text-base mb-1 leading-snug text-[#0a0a0a]">{r.title}</h3>
+                        <p className="text-xs text-[#5a5a5a] leading-relaxed line-clamp-2">{r.metaDescription}</p>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </section>
+          )}
         </article>
 
         <PageCTA lang={lang} />
