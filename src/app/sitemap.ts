@@ -73,6 +73,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "fuite-toiture-urgence",
       "toiture-hiver-quebec",
       "garantie-toiture",
+      "toiture-commerciale",
+      "ventilation-entretoit",
+      "reclamation-assurance-toiture",
+      "gouttieres-toiture",
       "partenaires",
     ] as string[]) {
       entries.push({

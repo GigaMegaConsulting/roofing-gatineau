@@ -7,6 +7,10 @@ import {
   getRoofLeakEmergencyGuide,
   getRoofWinterQuebecGuide,
   getRoofWarrantyGuide,
+  getCommercialRoofingGuide,
+  getAtticVentilationGuide,
+  getInsuranceClaimGuide,
+  getGuttersGuide,
 } from "@/lib/long-tail-content";
 
 interface Props {
@@ -29,13 +33,18 @@ export function Guides({ lang }: Props) {
       ? "Réponses claires aux questions qu'on nous pose le plus souvent — sans jargon, sans promesses irréalistes."
       : "Clear answers to the questions we get asked most often — no jargon, no oversold promises.";
 
+  // Ordered by intent: emergency/decision-making first, preventive & technical last.
   const items = [
     { slug: "fuite-toiture-urgence", content: getRoofLeakEmergencyGuide(lang) },
     { slug: "signes-toiture-endommagee", content: getDamagedRoofSignsGuide(lang) },
+    { slug: "reclamation-assurance-toiture", content: getInsuranceClaimGuide(lang) },
     { slug: "inspection-toiture", content: getRoofInspectionGuide(lang) },
     { slug: "bardeaux-vs-tole", content: getShinglesVsMetalGuide(lang) },
+    { slug: "toiture-commerciale", content: getCommercialRoofingGuide(lang) },
+    { slug: "ventilation-entretoit", content: getAtticVentilationGuide(lang) },
     { slug: "garantie-toiture", content: getRoofWarrantyGuide(lang) },
     { slug: "toiture-hiver-quebec", content: getRoofWinterQuebecGuide(lang) },
+    { slug: "gouttieres-toiture", content: getGuttersGuide(lang) },
   ];
 
   return (

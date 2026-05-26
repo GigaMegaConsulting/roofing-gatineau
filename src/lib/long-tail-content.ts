@@ -657,6 +657,413 @@ export function getRoofWarrantyGuide(lang: Lang): LongFormContent {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// 7. Commercial roofing
+// ─────────────────────────────────────────────────────────────────────────────
+const COMMERCIAL_ROOFING: Record<Lang, LongFormContent> = {
+  fr: {
+    title: "Toiture commerciale à Gatineau : ce qui change par rapport au résidentiel",
+    metaDescription: "Différences clés entre toiture commerciale et résidentielle : membrane TPO/EPDM, toits plats, durée de vie, et ce que les propriétaires d'immeubles à Gatineau doivent savoir.",
+    intro: "Une toiture commerciale n'a presque rien en commun avec une toiture résidentielle, sauf la fonction de garder l'eau dehors. Les matériaux, la pente, la durée de vie, le coût, et les obligations contractuelles sont tous différents. Si vous gérez un immeuble locatif, un commerce, ou un bâtiment industriel à Gatineau, voici ce qu'il faut comprendre avant de planifier des travaux.",
+    sections: [
+      {
+        heading: "Les trois grands types de toiture commerciale",
+        paragraphs: [
+          "Membrane TPO (thermoplastique) : le plus répandu sur les nouveaux bâtiments commerciaux dans l'Outaouais depuis une quinzaine d'années. Blanc réfléchissant, résistant aux UV, durée de vie 20-30 ans selon l'épaisseur (45, 60 ou 80 mil). Soudure thermique entre les feuilles — pas de joints collés.",
+          "Membrane EPDM (caoutchouc synthétique) : noir, durable, durée de vie similaire mais absorbe la chaleur (mauvais pour la facture de climatisation). Beaucoup d'immeubles construits entre 1990 et 2010 sont en EPDM.",
+          "Membrane bitumineuse modifiée (deux couches) : la « vieille fiable ». Durée de vie 20-25 ans. Installation au chalumeau ou autoadhésive. C'est ce qu'on voit le plus sur les commerces de Hull, Gatineau secteur, et Buckingham construits dans les années 80-90.",
+        ],
+      },
+      {
+        heading: "Pente et drainage : la grande différence",
+        paragraphs: [
+          "Les toitures commerciales sont presque toujours à pente faible (« plates » au visuel — en réalité une pente de 1/4 à 1/2 pouce par pied). Cette pente subtile dirige l'eau vers les drains de toit ou les déversoirs en bordure. Si ces drains se bouchent (feuilles, débris, glace), l'eau s'accumule en piscine, ce qui ajoute des centaines de kilos de charge et peut provoquer une infiltration ou même un affaissement structurel.",
+          "Conséquence : le nettoyage annuel des drains de toit est non-négociable. Beaucoup de propriétaires d'immeubles oublient ce point et découvrent le problème quand une fuite apparaît au 3ème étage après une grosse pluie.",
+        ],
+      },
+      {
+        heading: "Inspection et entretien",
+        paragraphs: [
+          "Pour les toitures commerciales à Gatineau, une inspection biannuelle (printemps + automne) est la norme professionnelle. Au printemps : vérifier les dégâts d'hiver (glace, accumulation de neige, dommages mécaniques). À l'automne : nettoyer les drains, sceller les joints qui ont bougé pendant l'été, préparer pour les premières neiges.",
+          "Les obligations contractuelles varient : plusieurs baux commerciaux imposent au locataire l'entretien préventif de la toiture, surtout dans les sous-locations. Lisez les clauses « maintenance des structures » avant d'assumer que c'est au propriétaire.",
+        ],
+      },
+      {
+        heading: "Réparation vs réfection complète",
+        paragraphs: [
+          "Sur une toiture commerciale, le calcul est différent du résidentiel : la membrane peut souvent être réparée localement avec une pièce de la même membrane soudée à chaud, même sur une membrane de 15 ans. Une réparation ciblée peut prolonger la vie utile de 5-10 ans à un coût marginal.",
+          "Quand envisager la réfection complète : multiples zones réparées dans les 24 derniers mois, isolant sous-jacent endommagé (qu'on découvre lors d'une réparation), ou la membrane atteint 80 % de sa durée annoncée et le propriétaire prévoit garder l'immeuble 5+ ans.",
+          "Une option intermédiaire : la « membrane sur membrane » — coller une nouvelle membrane TPO par-dessus l'ancienne EPDM ou bitumineuse encore en bonne forme structurelle. Économise 30-40 % vs une réfection complète et donne 15-20 ans supplémentaires. Pas applicable si l'isolant est endommagé.",
+        ],
+      },
+      {
+        heading: "Comment demander une soumission commerciale",
+        paragraphs: [
+          "Pour un commerce ou un immeuble à Gatineau, demandez une soumission avec : surface mesurée et confirmée (pas estimée d'en bas), spécification précise des matériaux (marque, modèle, épaisseur), garantie main-d'œuvre écrite, calendrier d'exécution incluant les contraintes opérationnelles (ne pas bloquer l'accès aux locataires, travail hors heures si nécessaire), et certificat d'assurance responsabilité civile de l'entrepreneur (5M $ minimum pour le commercial).",
+          "Couvreur Gatineau intervient en commercial dans tout l'Outaouais — réparations ciblées, réfections complètes, inspections annuelles préventives, et urgences. Visite d'évaluation sans frais avec rapport écrit et photos.",
+        ],
+      },
+    ],
+    closing: "Une toiture commerciale bien entretenue n'est pas une dépense — c'est de la prévention des sinistres. Pour une évaluation de votre immeuble à Gatineau, contactez-nous pour une visite sans frais.",
+  },
+  en: {
+    title: "Commercial Roofing in Gatineau: What's Different From Residential",
+    metaDescription: "Key differences between commercial and residential roofing: TPO/EPDM membrane, flat roofs, lifespan, and what Gatineau building owners need to know.",
+    intro: "A commercial roof has almost nothing in common with a residential roof except keeping water out. Materials, slope, lifespan, cost, and contractual obligations are all different. If you manage a rental building, a business, or industrial property in Gatineau, here's what to understand before planning work.",
+    sections: [
+      {
+        heading: "The three main types of commercial roofing",
+        paragraphs: [
+          "TPO membrane (thermoplastic): most common on newer commercial buildings in the Outaouais for the past 15 years. White reflective, UV-resistant, 20-30 year lifespan by thickness (45, 60, or 80 mil). Heat-welded seams — no glued joints.",
+          "EPDM membrane (synthetic rubber): black, durable, similar lifespan but absorbs heat (bad for AC bills). Many buildings constructed between 1990-2010 are EPDM.",
+          "Modified bitumen (two-layer): the old workhorse. 20-25 year lifespan. Torch-applied or self-adhesive installation. Most commonly seen on Hull, Gatineau sector, and Buckingham commercial buildings from the 80s-90s.",
+        ],
+      },
+      {
+        heading: "Slope and drainage: the big difference",
+        paragraphs: [
+          "Commercial roofs are almost always low-slope (visually 'flat' — in reality 1/4 to 1/2 inch per foot pitch). This subtle slope directs water to roof drains or edge scuppers. If those drains clog (leaves, debris, ice), water pools, adding hundreds of pounds of load and potentially causing infiltration or even structural sagging.",
+          "Consequence: annual drain cleaning is non-negotiable. Many building owners forget this and discover the problem when a 3rd-floor leak appears after a heavy rain.",
+        ],
+      },
+      {
+        heading: "Inspection and maintenance",
+        paragraphs: [
+          "For commercial roofs in Gatineau, biannual inspections (spring + fall) are the professional standard. Spring: check winter damage (ice, snow accumulation, mechanical damage). Fall: clean drains, reseal joints that shifted in summer heat, prep for first snow.",
+          "Contractual obligations vary: many commercial leases assign roof preventive maintenance to the tenant, especially in subletting situations. Read the 'structure maintenance' clauses before assuming the owner handles it.",
+        ],
+      },
+      {
+        heading: "Repair vs full replacement",
+        paragraphs: [
+          "On a commercial roof, the math differs from residential: the membrane can often be locally repaired with a patch of the same membrane heat-welded in, even on a 15-year-old membrane. A targeted repair can extend useful life by 5-10 years at marginal cost.",
+          "When to consider full replacement: multiple repaired zones in the last 24 months, damage to underlying insulation discovered during a repair, or membrane at 80% of stated lifespan and the owner plans to hold the building 5+ years.",
+          "An intermediate option: 'membrane over membrane' — glue a new TPO membrane over the still-structurally-sound EPDM or bitumen. Saves 30-40% vs full replacement and adds 15-20 years. Not applicable if insulation is compromised.",
+        ],
+      },
+      {
+        heading: "How to ask for a commercial quote",
+        paragraphs: [
+          "For a Gatineau commercial property, request a quote that includes: measured and confirmed surface (not eyeballed from the ground), precise material spec (brand, model, thickness), written workmanship warranty, execution timeline with operational constraints noted (not blocking tenant access, after-hours work if needed), and the contractor's liability insurance certificate ($5M minimum for commercial).",
+          "Gatineau Roofing handles commercial work across the Outaouais — targeted repairs, full replacements, annual preventive inspections, and emergencies. Free assessment visit with written report and photos.",
+        ],
+      },
+    ],
+    closing: "A well-maintained commercial roof isn't an expense — it's loss prevention. For an assessment of your Gatineau building, contact us for a free visit.",
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. Attic ventilation deep-dive
+// ─────────────────────────────────────────────────────────────────────────────
+const ATTIC_VENTILATION: Record<Lang, LongFormContent> = {
+  fr: {
+    title: "Ventilation d'entretoit à Gatineau : pourquoi c'est la cause #1 de toitures qui meurent trop tôt",
+    metaDescription: "Comprendre la ventilation de grenier dans une maison québécoise : norme actuelle, signes d'une ventilation déficiente, et coût de la correction lors d'une réfection.",
+    intro: "Si une toiture en bardeaux d'asphalte de Gatineau dure 15 ans au lieu des 25 attendus, la cause est presque toujours la ventilation d'entretoit. C'est invisible, c'est mal expliqué par la majorité des couvreurs au moment de la soumission, et c'est le facteur qui transforme une bonne pose en mauvaise pose. Voici ce qui se passe et comment vérifier que la vôtre fonctionne.",
+    sections: [
+      {
+        heading: "À quoi sert vraiment la ventilation d'entretoit",
+        paragraphs: [
+          "L'entretoit doit rester à la température extérieure, été comme hiver. En été, ça empêche la chaleur qui monte du chauffage solaire de faire cuire les bardeaux par le dessous (qui les fragilise et raccourcit la durée de vie). En hiver, ça empêche la chaleur de la maison de monter dans l'entretoit, de faire fondre la neige sur le toit, et de causer des barrages de glace.",
+          "Le système fonctionne uniquement quand l'air circule : entrée d'air froid aux soffites (en bas du toit) et sortie d'air chaud aux évents de toit ou à la faîtière ventilée (en haut). C'est un effet cheminée — l'air chaud monte naturellement, l'air froid prend sa place. Si l'un des deux est bloqué, le système ne fonctionne plus du tout.",
+        ],
+      },
+      {
+        heading: "La norme actuelle au Québec",
+        paragraphs: [
+          "Code de construction du Québec et bonnes pratiques 2026 : 1 pi² de ventilation par 300 pi² de surface de plancher d'entretoit, divisée à parts égales entre entrée (soffites) et sortie (évents/faîtière). Pour un bungalow standard de 1 200 pi², ça donne environ 4 pi² au total, soit 2 pi² d'entrée et 2 pi² de sortie.",
+          "La majorité des maisons construites avant 1990 dans l'Outaouais sont en dessous de cette norme. Beaucoup ont des soffites « décoratifs » sans réelle perforation, ou des évents de toit bouchés par l'isolant qui a été soufflé sans déflecteurs.",
+        ],
+      },
+      {
+        heading: "Comment vérifier sans monter sur le toit",
+        paragraphs: [
+          "Test 1 — la main aux soffites : par une journée venteuse, placez la main près d'un soffite en regardant vers le haut. Vous devriez sentir une légère succion d'air vers l'entretoit. Aucun mouvement = soffite bouché.",
+          "Test 2 — l'inspection des combles : en pleine journée d'été, montez au grenier. La température devrait être proche de l'extérieur (à 5-10 °C près). Si vous trouvez 50 °C alors qu'il fait 28 °C dehors, la ventilation est insuffisante.",
+          "Test 3 — l'inspection l'hiver : après une chute de neige, comparez votre toit à celui des voisins. Si votre toit montre des plaques fondues alors que les leurs gardent une couverture uniforme, votre entretoit est plus chaud que la normale (= mauvaise ventilation ou mauvaise isolation).",
+        ],
+      },
+      {
+        heading: "Corriger la ventilation lors d'une réfection",
+        paragraphs: [
+          "Une réfection complète de toiture est le seul moment où on peut facilement améliorer la ventilation. Le couvreur peut : installer une faîtière ventilée (continue, beaucoup plus efficace que les évents ponctuels), ajouter des évents de toit là où il en manque, installer des déflecteurs aux soffites pour empêcher l'isolant de bloquer l'entrée d'air, et remplacer les soffites perforés trop petits par des soffites en aluminium avec perforation ASTM correcte.",
+          "Coût additionnel d'une mise aux normes lors d'une réfection : généralement entre 5 et 12 % du prix de la toiture. À comparer avec : 25 % de durée de vie supplémentaire (5-7 ans), élimination des barrages de glace, et réduction de la facture de climatisation l'été.",
+        ],
+      },
+      {
+        heading: "Le piège : la ventilation mécanique",
+        paragraphs: [
+          "Certaines compagnies vendent des « ventilateurs d'entretoit motorisés » comme solution miracle. Réalité : ces ventilateurs créent une dépression dans l'entretoit qui peut tirer l'air chaud directement de la maison à travers l'isolant — résultat opposé du but recherché. La ventilation passive (soffites + faîtière) est presque toujours suffisante et préférable.",
+          "Cas particulier où la ventilation mécanique a du sens : entretoits exceptionnellement complexes (avec retours d'angle multiples) où la convection naturelle ne suffit pas. C'est rare en résidentiel standard.",
+        ],
+      },
+    ],
+    closing: "Si vous planifiez une réfection de toiture à Gatineau, demandez explicitement quel est le plan de ventilation prévu. Un couvreur qui ne traite pas ce point ne vous installe pas une toiture qui dure. Pour une inspection ou une soumission avec analyse complète de la ventilation, contactez-nous.",
+  },
+  en: {
+    title: "Attic Ventilation in Gatineau: The #1 Reason Roofs Die Too Soon",
+    metaDescription: "Understanding attic ventilation in a Quebec home: current standard, signs of poor ventilation, and the cost of fixing it during a re-roof.",
+    intro: "If an asphalt shingle roof in Gatineau lasts 15 years instead of the expected 25, attic ventilation is almost always the cause. It's invisible, poorly explained by most roofers at quote time, and the factor that turns a good install into a bad one. Here's what's happening and how to verify yours is working.",
+    sections: [
+      {
+        heading: "What attic ventilation actually does",
+        paragraphs: [
+          "The attic needs to stay close to outside temperature, summer and winter. In summer, this prevents solar heat from cooking shingles from below (which weakens them and shortens lifespan). In winter, it stops house heat from rising into the attic, melting roof snow, and creating ice dams.",
+          "The system only works when air circulates: cold air intake at the soffits (bottom of roof) and hot air exhaust at roof vents or ridge vent (top). It's a chimney effect — hot air rises naturally, cold air takes its place. If either side is blocked, the system fails entirely.",
+        ],
+      },
+      {
+        heading: "Current Quebec standard",
+        paragraphs: [
+          "Quebec building code and 2026 best practice: 1 sq ft of ventilation per 300 sq ft of attic floor area, evenly split between intake (soffits) and exhaust (vents/ridge). For a standard 1,200 sq ft bungalow, that's about 4 sq ft total, 2 in + 2 out.",
+          "Most Outaouais homes built before 1990 fall short. Many have decorative soffits with no real perforation, or roof vents blocked by insulation blown in without baffles.",
+        ],
+      },
+      {
+        heading: "How to check without climbing on the roof",
+        paragraphs: [
+          "Test 1 — hand at the soffit: on a windy day, hold your hand near a soffit looking up. You should feel slight suction toward the attic. No movement = blocked soffit.",
+          "Test 2 — attic inspection: in mid-summer, climb to the attic. Temperature should be within 5-10°C of outside. If you find 50°C while it's 28°C outside, ventilation is inadequate.",
+          "Test 3 — winter inspection: after a snowfall, compare your roof to neighbours'. If yours has melted patches while theirs keep uniform cover, your attic is warmer than normal (= bad ventilation or bad insulation).",
+        ],
+      },
+      {
+        heading: "Fixing ventilation during a re-roof",
+        paragraphs: [
+          "A complete re-roof is the only easy time to upgrade ventilation. The roofer can: install a ridge vent (continuous, much more effective than spot vents), add roof vents where missing, install baffles at soffits to keep insulation from blocking intake, and replace too-small perforated soffits with aluminium soffits with proper ASTM perforation.",
+          "Additional cost to bring it to code during a re-roof: typically 5-12% of the roof price. Compare with: 25% additional lifespan (5-7 years), elimination of ice dams, and reduced summer AC bills.",
+        ],
+      },
+      {
+        heading: "The trap: mechanical ventilation",
+        paragraphs: [
+          "Some companies sell 'powered attic fans' as a magic solution. Reality: these fans create depression in the attic that can pull warm air directly from the house through insulation — opposite of the intended effect. Passive ventilation (soffits + ridge) is almost always sufficient and preferable.",
+          "Edge case where mechanical makes sense: exceptionally complex attics with multiple return angles where natural convection fails. Rare in standard residential.",
+        ],
+      },
+    ],
+    closing: "If you're planning a re-roof in Gatineau, explicitly ask what the ventilation plan is. A roofer who doesn't address this isn't installing a roof that lasts. For an inspection or quote with full ventilation analysis, contact us.",
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. Insurance claims for storm/hail damage
+// ─────────────────────────────────────────────────────────────────────────────
+const INSURANCE_CLAIM: Record<Lang, LongFormContent> = {
+  fr: {
+    title: "Réclamation d'assurance pour dommages de toiture à Gatineau : ce qui se passe vraiment",
+    metaDescription: "Comment fonctionne une réclamation d'assurance habitation pour des dommages de toiture au Québec : ce qui est couvert, ce qui ne l'est pas, et l'ordre des étapes.",
+    intro: "Quand une grosse tempête frappe Gatineau, c'est la course aux réclamations d'assurance. La plupart des propriétaires découvrent à ce moment-là que leur compréhension de leur police n'est pas exacte. Voici comment ça fonctionne vraiment, étape par étape, et où sont les pièges.",
+    sections: [
+      {
+        heading: "Ce qui est couvert (généralement)",
+        paragraphs: [
+          "Dommages soudains et accidentels causés par un événement assuré : vents violents (au-dessus du seuil de votre police, typiquement 80-100 km/h), grêle, chute d'arbre, accumulation de glace anormale. Vous voyez le dommage, vous documentez, vous appelez votre assureur dans les 24-48 h.",
+          "Dommages intérieurs résultant d'une infiltration suite à un dommage de toiture couvert : plafonds, planchers, murs, biens endommagés. C'est souvent la partie la plus coûteuse de la réclamation, et c'est pourquoi le délai d'intervention compte autant.",
+          "Bâchage d'urgence pour stopper l'eau pendant que la réclamation est en cours. Conservez les reçus — c'est remboursable.",
+        ],
+      },
+      {
+        heading: "Ce qui n'est PAS couvert (généralement)",
+        paragraphs: [
+          "Usure normale et fin de vie utile. Si votre toiture a 24 ans et que le vent en a arraché une section, l'assureur considérera que la toiture était en fin de vie. Ils peuvent refuser ou ne couvrir que partiellement (typiquement au pro-rata de la valeur résiduelle).",
+          "Dommages causés par un manque d'entretien. Si l'inspection montre que des bardeaux étaient déjà soulevés depuis longtemps, ou que des solins étaient ouverts, ou que des branches frottaient sur le toit depuis des années, l'assureur peut considérer que l'événement météo a juste révélé un problème préexistant.",
+          "Fuites graduelles. Une fuite qui se développe sur des mois et qu'on découvre quand le plafond commence à tacher est presque toujours exclue — c'est considéré comme de l'entretien, pas un sinistre.",
+        ],
+      },
+      {
+        heading: "L'ordre des étapes après une tempête",
+        paragraphs: [
+          "1. Photographier abondamment. Avant de bouger quoi que ce soit, prenez 50+ photos : vue large du toit du sol, gros plan sur chaque zone abîmée, intérieur si infiltration, débris en bas. Si l'eau entre activement, vidéo. Ces preuves valent des milliers de dollars.",
+          "2. Sécuriser le bâtiment. Bâcher la zone abîmée, déplacer ce qui peut être abîmé par l'eau. Documentez aussi cette étape.",
+          "3. Appeler l'assureur dans les 48 heures. Un dossier ouvert tôt est traité différemment d'une réclamation tardive. Demandez le numéro de dossier et l'identité de l'expert assigné.",
+          "4. Obtenir une soumission d'un couvreur avant la visite de l'expert. C'est votre contre-référence — si l'expert propose un règlement très en dessous de votre soumission, vous avez les chiffres pour négocier.",
+          "5. Faire venir l'expert. Soyez présent, montrez chaque dommage en personne. Demandez son nom, sa qualification, et son contact direct. Notez ses commentaires sur place.",
+          "6. Recevoir l'évaluation écrite. Comparez avec la soumission de votre couvreur. Si l'écart est significatif (>20 %), demandez une révision avec justification détaillée.",
+        ],
+      },
+      {
+        heading: "Les pièges courants",
+        paragraphs: [
+          "Le « couvreur » qui frappe à votre porte 24 h après la tempête. Beaucoup sont des opportunistes qui font des réparations rapides, encaissent l'assurance, et disparaissent. Privilégiez un couvreur établi localement avec une adresse vérifiable et plusieurs années d'historique.",
+          "La franchise oubliée. Votre police a probablement une franchise de 1 000-2 500 $. Si le dommage total est de 3 500 $, vous récupérez 1 500 $ et payez le reste. Vérifiez avant d'engager des travaux importants.",
+          "L'oubli de la dépréciation. Les assureurs utilisent souvent un calcul « valeur dépréciée » (actual cash value) plutôt que « coût de remplacement neuf ». Sur une toiture de 18 ans, ça peut couper le règlement de 30-40 %. Si votre police inclut « replacement cost » explicitement, demandez l'application — sinon vous laissez de l'argent sur la table.",
+        ],
+      },
+      {
+        heading: "Le rôle du couvreur dans la réclamation",
+        paragraphs: [
+          "Un bon couvreur peut faire bien plus que la soumission : il peut rencontrer l'expert en assurance avec vous, expliquer la nature exacte des dommages, et fournir des photos comparatives qui appuient votre dossier. Plusieurs réclamations sous-payées au départ remontent significativement après une discussion entre l'expert et un vrai professionnel de la toiture.",
+          "Couvreur Gatineau intervient sur les dossiers d'assurance dans tout l'Outaouais. Inspection sans frais après tempête, rapport écrit conforme au format demandé par les assureurs, et accompagnement durant la visite de l'expert si vous le souhaitez.",
+        ],
+      },
+    ],
+    closing: "Une réclamation bien gérée dans les 48 premières heures peut récupérer plusieurs milliers de dollars qui seraient autrement perdus. Pour une inspection post-tempête à Gatineau, contactez-nous — visite rapide et documentation complète, gratuit.",
+  },
+  en: {
+    title: "Insurance Claims for Roof Damage in Gatineau: How It Actually Works",
+    metaDescription: "How a Quebec home insurance claim works for roof damage: what's covered, what's not, and the step-by-step order that gets the best settlement.",
+    intro: "When a major storm hits Gatineau, it's a race to file claims. Most owners learn at that moment that their understanding of their policy isn't accurate. Here's how it actually works, step by step, and where the traps are.",
+    sections: [
+      {
+        heading: "What's covered (usually)",
+        paragraphs: [
+          "Sudden and accidental damage from an insured event: high winds (above your policy threshold, typically 80-100 km/h), hail, falling tree, abnormal ice accumulation. You see the damage, document, call your insurer within 24-48 hours.",
+          "Interior damage from infiltration following a covered roof event: ceilings, floors, walls, damaged belongings. Often the most expensive part of the claim, and why response time matters.",
+          "Emergency tarping to stop water during the claim. Keep receipts — reimbursable.",
+        ],
+      },
+      {
+        heading: "What's NOT covered (usually)",
+        paragraphs: [
+          "Normal wear and end of useful life. If your roof is 24 years old and wind tore off a section, the insurer will consider it was at end-of-life. They may refuse or only partially cover (typically prorated to residual value).",
+          "Damage from lack of maintenance. If inspection shows shingles were already lifted for years, or flashings open, or branches rubbing the roof for ages, the insurer may consider the weather event simply revealed a preexisting problem.",
+          "Gradual leaks. A leak that developed over months and was discovered when the ceiling started staining is almost always excluded — that's maintenance, not damage.",
+        ],
+      },
+      {
+        heading: "Step order after a storm",
+        paragraphs: [
+          "1. Photograph abundantly. Before moving anything, take 50+ photos: wide shot of roof from ground, close-up of every damaged area, interior if infiltration, debris on the ground. If water is actively entering, video. These proofs are worth thousands of dollars.",
+          "2. Secure the building. Tarp the damaged area, move what could be water-damaged. Document this step too.",
+          "3. Call the insurer within 48 hours. A file opened early is treated differently from a late claim. Get the claim number and the assigned adjuster's identity.",
+          "4. Get a roofer's quote before the adjuster's visit. This is your counter-reference — if the adjuster proposes a settlement well below your quote, you have the numbers to negotiate.",
+          "5. Meet the adjuster. Be present, show every damage in person. Get their name, qualification, and direct contact. Note their on-site comments.",
+          "6. Receive the written assessment. Compare with your roofer's quote. If the gap is significant (>20%), request a review with detailed justification.",
+        ],
+      },
+      {
+        heading: "Common traps",
+        paragraphs: [
+          "The 'roofer' knocking on your door 24h after the storm. Many are opportunists who do quick repairs, cash the insurance, and disappear. Prefer a locally established roofer with a verifiable address and multi-year history.",
+          "The forgotten deductible. Your policy probably has a $1,000-2,500 deductible. If total damage is $3,500, you receive $1,500 and pay the rest. Verify before committing to major work.",
+          "Depreciation oversight. Insurers often use 'actual cash value' rather than 'replacement cost'. On an 18-year-old roof, that can cut settlement by 30-40%. If your policy explicitly includes 'replacement cost', demand its application — otherwise you're leaving money on the table.",
+        ],
+      },
+      {
+        heading: "The roofer's role in the claim",
+        paragraphs: [
+          "A good roofer can do far more than the quote: they can meet the insurance adjuster with you, explain the exact nature of the damage, and provide comparative photos that support your file. Many underpaid initial claims rise significantly after a real roofing professional speaks with the adjuster.",
+          "Gatineau Roofing handles insurance files across the Outaouais. Free post-storm inspection, written report in the format insurers request, and accompaniment during the adjuster's visit if you want.",
+        ],
+      },
+    ],
+    closing: "A claim well-managed in the first 48 hours can recover several thousand dollars that would otherwise be lost. For a post-storm inspection in Gatineau, contact us — fast visit and complete documentation, free.",
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 10. Gutters and downspouts
+// ─────────────────────────────────────────────────────────────────────────────
+const GUTTERS: Record<Lang, LongFormContent> = {
+  fr: {
+    title: "Gouttières et descentes pluviales à Gatineau : entretien, remplacement et lien avec la toiture",
+    metaDescription: "Pourquoi les gouttières affectent directement la durée de vie d'une toiture : entretien automnal, signes de remplacement, et installation lors d'une réfection.",
+    intro: "Les gouttières sont rarement un sujet de conversation passionnant — jusqu'au moment où elles débordent et que l'eau finit dans le sous-sol ou contre la fondation. À Gatineau, où on a 250 cm de neige et des pluies d'été intenses, les gouttières font un travail crucial : elles dirigent les eaux loin de la maison. Voici ce qu'il faut savoir.",
+    sections: [
+      {
+        heading: "Comment les gouttières affectent la toiture",
+        paragraphs: [
+          "Des gouttières qui ne fonctionnent pas (bouchées, désalignées, percées) créent des refoulements d'eau en bordure de toit. Cette eau s'infiltre sous les premières rangées de bardeaux, pourrit le platelage, et finit par traverser. À Gatineau, c'est l'une des principales causes de fuites en bord de toit que les propriétaires attribuent à tort à un défaut de la toiture elle-même.",
+          "Pire en hiver : des gouttières pleines de feuilles favorisent la formation de barrages de glace. La neige fond, l'eau coule dans la gouttière, gèle au contact des feuilles décomposées, et la glace s'accumule jusqu'à soulever les bardeaux de bordure.",
+        ],
+      },
+      {
+        heading: "L'entretien minimal",
+        paragraphs: [
+          "Nettoyage à la fin de l'automne (mi-octobre à mi-novembre selon la chute des feuilles), idéalement après que tous les arbres environnants soient nus. Si vous attendez après les premières gelées, les feuilles humides forment des bouchons compacts difficiles à déloger.",
+          "Deuxième nettoyage au printemps (avril) si votre quartier a beaucoup d'arbres : la fonte des neiges peut amener des débris d'hiver dans les gouttières.",
+          "Si vous avez plus d'un étage ou êtes mal à l'aise avec une échelle, faites-le faire. Le coût (typiquement 150-300 $ pour une maison résidentielle standard à Gatineau) est négligeable comparé à un dégât d'eau ou une chute.",
+        ],
+      },
+      {
+        heading: "Les protections anti-feuilles",
+        paragraphs: [
+          "Plusieurs systèmes existent : grillages plats, peignes, dômes, micro-mesh. Aucun n'est parfait — tous laissent passer un peu de débris, mais ils réduisent significativement la fréquence du nettoyage (1 fois par 2-3 ans au lieu de annuellement).",
+          "Le micro-mesh est le meilleur compromis qualité/prix selon notre expérience à Gatineau : il bloque même les aiguilles de conifère et la pollen, sans bloquer le débit d'eau. Mais il faut un installateur qui sait ce qu'il fait — un micro-mesh mal installé peut faire pire que pas de protection.",
+          "Le mauvais investissement : les protections vendues comme « lifetime guarantee, never clean again » à 3 000-5 000 $ pour une maison standard. La marge de profit du vendeur dépasse souvent la valeur réelle.",
+        ],
+      },
+      {
+        heading: "Quand remplacer les gouttières",
+        paragraphs: [
+          "Les gouttières en aluminium continuent (les plus courantes à Gatineau depuis 30 ans) durent 20-30 ans selon l'épaisseur et l'exposition. Signes de fin de vie : sections qui se désaligne au moindre poids de glace, perforations multiples par la corrosion, joints qui fuient malgré les calfeutrages successifs.",
+          "Si votre toiture arrive à terme et que vos gouttières ont 20+ ans, le remplacement simultané fait sens : on profite de l'échafaudage et de la main-d'œuvre déjà sur place. Le coût marginal de remplacer les gouttières lors d'une réfection est typiquement 30-40 % moins cher qu'un remplacement isolé.",
+        ],
+      },
+      {
+        heading: "Les descentes pluviales : le détail qu'on oublie",
+        paragraphs: [
+          "Les meilleures gouttières du monde ne servent à rien si les descentes pluviales déversent l'eau directement contre la fondation. La règle : l'eau doit être éloignée de la fondation d'au moins 2 mètres, idéalement vers une pente descendante ou un drain pluvial.",
+          "Si vous voyez des taches d'humidité au sous-sol en bordure des descentes pluviales, ce n'est presque jamais un problème de fondation — c'est un problème de descente. Solution simple : prolongateurs en plastique souple, ou raccordement vers un drain enterré.",
+          "À Gatineau, l'eau qui s'accumule contre la fondation gèle l'hiver, ce qui crée des fissures structurelles à long terme. Ce poste d'entretien minuscule prévient des réparations majeures.",
+        ],
+      },
+    ],
+    closing: "Les gouttières font partie du système toiture, même si elles sont rarement traitées comme telles. Si vous planifiez une réfection ou avez des doutes sur l'état des vôtres, contactez Couvreur Gatineau pour une inspection complète qui inclut l'évaluation des gouttières et descentes.",
+  },
+  en: {
+    title: "Gutters and Downspouts in Gatineau: Maintenance, Replacement, and Connection to Roofing",
+    metaDescription: "Why gutters directly affect roof lifespan: fall maintenance, replacement signs, and installing during a re-roof in Gatineau, Quebec.",
+    intro: "Gutters are rarely a thrilling topic — until they overflow and water ends up in the basement or against the foundation. In Gatineau, where we get 250 cm of snow and heavy summer rain, gutters do crucial work: they direct water away from the home. Here's what to know.",
+    sections: [
+      {
+        heading: "How gutters affect the roof",
+        paragraphs: [
+          "Non-functioning gutters (clogged, misaligned, holed) create water backups at the roof edge. This water seeps under the first rows of shingles, rots the deck, and eventually breaks through. In Gatineau, it's one of the leading causes of edge-of-roof leaks that homeowners wrongly attribute to a roof defect.",
+          "Worse in winter: gutters full of leaves promote ice dam formation. Snow melts, water runs into the gutter, freezes against decomposed leaves, and ice builds up until it lifts the edge shingles.",
+        ],
+      },
+      {
+        heading: "Minimum maintenance",
+        paragraphs: [
+          "Late-fall cleaning (mid-October to mid-November depending on leaf-fall), ideally after surrounding trees are bare. Waiting past the first frost means wet leaves form compact plugs hard to dislodge.",
+          "Second cleaning in spring (April) if your neighbourhood is heavily wooded: snowmelt can carry winter debris into the gutters.",
+          "If you have more than one storey or are uncomfortable on a ladder, hire it out. The cost (typically $150-300 for a standard Gatineau home) is negligible compared to a water-damage repair or a fall.",
+        ],
+      },
+      {
+        heading: "Leaf-protection systems",
+        paragraphs: [
+          "Several systems exist: flat mesh, combs, domes, micro-mesh. None is perfect — all let some debris through, but they reduce cleaning frequency significantly (once every 2-3 years instead of annually).",
+          "Micro-mesh is the best quality/price compromise based on our Gatineau experience: it blocks even conifer needles and pollen without blocking water flow. But you need an installer who knows what they're doing — bad micro-mesh installs can be worse than no protection.",
+          "Bad investment: protections sold as 'lifetime guarantee, never clean again' at $3,000-5,000 for a standard home. Seller margin often exceeds real value.",
+        ],
+      },
+      {
+        heading: "When to replace gutters",
+        paragraphs: [
+          "Seamless aluminium gutters (most common in Gatineau for 30 years) last 20-30 years depending on gauge and exposure. End-of-life signs: sections that misalign with the slightest ice weight, multiple corrosion-induced perforations, joints that leak despite successive caulking.",
+          "If your roof is near end-of-life and your gutters are 20+ years, replacing both at once makes sense: you reuse the scaffolding and labour already on-site. Marginal cost of replacing gutters during a re-roof is typically 30-40% less than a standalone replacement.",
+        ],
+      },
+      {
+        heading: "Downspouts: the detail we forget",
+        paragraphs: [
+          "The best gutters in the world are useless if the downspouts dump water directly against the foundation. The rule: water must be moved at least 2 metres away from the foundation, ideally onto a downward slope or into a storm drain.",
+          "If you see basement damp marks near the downspouts, it's almost never a foundation problem — it's a downspout problem. Simple fix: flexible plastic extenders, or connection to a buried drain.",
+          "In Gatineau, water pooling at the foundation freezes in winter, creating long-term structural cracks. This tiny maintenance task prevents major repairs.",
+        ],
+      },
+    ],
+    closing: "Gutters are part of the roofing system, even if rarely treated that way. If you're planning a re-roof or have doubts about your current ones, contact Gatineau Roofing for a complete inspection that includes gutters and downspouts.",
+  },
+};
+
+export function getCommercialRoofingGuide(lang: Lang): LongFormContent {
+  return COMMERCIAL_ROOFING[lang];
+}
+export function getAtticVentilationGuide(lang: Lang): LongFormContent {
+  return ATTIC_VENTILATION[lang];
+}
+export function getInsuranceClaimGuide(lang: Lang): LongFormContent {
+  return INSURANCE_CLAIM[lang];
+}
+export function getGuttersGuide(lang: Lang): LongFormContent {
+  return GUTTERS[lang];
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Related-guides registry — used by LongFormPage to cross-link long-tail
 // content. The order here matches the homepage Guides component intent
 // (highest-intent first). getRelatedGuides() returns 3 entries excluding
@@ -665,10 +1072,14 @@ export function getRoofWarrantyGuide(lang: Lang): LongFormContent {
 const GUIDE_REGISTRY: Array<{ slug: string; get: (lang: Lang) => LongFormContent }> = [
   { slug: "fuite-toiture-urgence", get: getRoofLeakEmergencyGuide },
   { slug: "signes-toiture-endommagee", get: getDamagedRoofSignsGuide },
+  { slug: "reclamation-assurance-toiture", get: getInsuranceClaimGuide },
   { slug: "inspection-toiture", get: getRoofInspectionGuide },
   { slug: "bardeaux-vs-tole", get: getShinglesVsMetalGuide },
+  { slug: "toiture-commerciale", get: getCommercialRoofingGuide },
+  { slug: "ventilation-entretoit", get: getAtticVentilationGuide },
   { slug: "garantie-toiture", get: getRoofWarrantyGuide },
   { slug: "toiture-hiver-quebec", get: getRoofWinterQuebecGuide },
+  { slug: "gouttieres-toiture", get: getGuttersGuide },
 ];
 
 export interface RelatedGuide {
