@@ -78,6 +78,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "reclamation-assurance-toiture",
       "gouttieres-toiture",
       "partenaires",
+      "guides",
     ] as string[]) {
       entries.push({
         url: `${base}/${lang}/${path}`,
