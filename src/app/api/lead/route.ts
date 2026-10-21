@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { siteConfig } from "@/lib/site.config";
+import { emailHandoff, textToHtml, partner } from "@/lib/reply";
+import { sendSms } from "@/lib/twilio";
+import { smsReply } from "@/lib/reply";
 
 // Lead intake endpoint. On every form submission it:
 //   1. Emails the lead to the owner (LEAD_TO_EMAIL).
@@ -158,82 +161,49 @@ export async function POST(req: NextRequest) {
   });
   if (!notifyRes.ok) console.error("[lead] notification send failed:", notifyRes.error);
 
-  // ── 2. Customer auto-acknowledgement ─────────────────────────────────
+  // ── 2. Customer auto-reply (handoff) — email and, when a phone was given,
+  //       SMS too, so a mistyped email address never leaves a lead unanswered.
   let autoReplied = false;
+  let smsReplied = false;
   if (email) {
-    const ack = buildAck(lang, firstName, comment, brandName, siteConfig.domain, siteConfig.phoneDisplay);
+    const ack = emailHandoff(lang, firstName, comment);
     const ackRes = await brevoSend({
       apiKey,
       from: { email: fromEmail, name: brandName },
       to: { email, name: `${firstName} ${lastName}`.trim() },
       subject: ack.subject,
-      html: ack.html,
+      html: textToHtml(ack.text),
       text: ack.text,
       replyTo: { email: fromEmail },
     });
     autoReplied = ackRes.ok;
     if (!ackRes.ok) console.error("[lead] auto-reply send failed:", ackRes.error);
   }
+  const e164 = normalizePhone(phone);
+  if (e164) {
+    const r = await sendSms({ from: siteConfig.phone, to: e164, body: smsReply(lang, "handoff") });
+    smsReplied = r.ok;
+    if (!r.ok) console.error("[lead] sms auto-reply failed:", r.error);
+  }
+
+  // ── 3. Partner forward (only when PARTNER_* env is configured) ────────
+  const pt = partner();
+  if (pt) {
+    const lead = `Nouveau lead ${brandName} (formulaire) — ${firstName} ${lastName}, ${phone || "—"}, ${email || "—"} : ${comment || "(sans message)"}`;
+    if (pt.phone) await sendSms({ from: siteConfig.phone, to: pt.phone, body: lead.slice(0, 1500) });
+    if (pt.email) await brevoSend({ apiKey, from: { email: fromEmail, name: brandName }, to: { email: pt.email }, subject: `Nouveau lead — ${brandName} (${firstName} ${lastName})`, text: lead, html: `<p>${esc(lead)}</p>` });
+  }
 
   // Always 200 to the visitor — their form succeeded regardless of our
   // downstream email plumbing.
-  return NextResponse.json({ ok: true, leadId, notified: notifyRes.ok, autoReplied });
+  return NextResponse.json({ ok: true, leadId, notified: notifyRes.ok, autoReplied, smsReplied });
 }
 
-// Customer-facing acknowledgement. Niche-agnostic on purpose — asks for the
-// address + timing every local-service quote needs, signed by the operator.
-function buildAck(
-  lang: "fr" | "en",
-  firstName: string,
-  comment: string,
-  brandName: string,
-  domain: string,
-  phoneDisplay: string,
-) {
-  if (lang === "fr") {
-    const subject = `Nous avons bien reçu votre demande — ${brandName}`;
-    const text = `Bonjour ${firstName},
-
-Merci d'avoir communiqué avec nous via ${domain}. Nous avons bien reçu votre demande :
-
-« ${comment} »
-
-Pour vous préparer une soumission rapide et précise, deux petites questions :
-
-1. Quelle est l'adresse (ou le quartier) pour les travaux ?
-2. Quand souhaitez-vous faire faire le travail — avez-vous une échéance ?
-
-Répondez simplement à ce courriel avec ces informations et nous vous reviendrons avec un prix fixe.
-
-Merci,
-Jérôme
-${brandName}
-${phoneDisplay} · ${domain}`;
-    const html = text.split("\n").map(l =>
-      l.trim() === "" ? "<br/>" : `<p style="margin:0 0 10px">${esc(l)}</p>`
-    ).join("");
-    return { subject, text, html };
-  }
-  const subject = `We received your request — ${brandName}`;
-  const text = `Hi ${firstName},
-
-Thanks for reaching out through ${domain}. We've received your request:
-
-"${comment}"
-
-To put together a fast, accurate quote, two quick questions:
-
-1. What's the address (or neighbourhood) for the job?
-2. When are you hoping to have it done — any deadline?
-
-Just reply to this email with those details and we'll get back to you with a fixed price.
-
-Thanks,
-Jérôme
-${brandName}
-${phoneDisplay} · ${domain}`;
-  const html = text.split("\n").map(l =>
-    l.trim() === "" ? "<br/>" : `<p style="margin:0 0 10px">${esc(l)}</p>`
-  ).join("");
-  return { subject, text, html };
+// Accept "819-743-0337", "(819) 743-0337", "8197430337", "+18197430337".
+function normalizePhone(raw: string): string | null {
+  const d = raw.replace(/\D/g, "");
+  if (d.length === 10) return `+1${d}`;
+  if (d.length === 11 && d.startsWith("1")) return `+${d}`;
+  if (raw.trim().startsWith("+") && d.length >= 8 && d.length <= 15) return `+${d}`;
+  return null;
 }

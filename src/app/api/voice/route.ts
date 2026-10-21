@@ -57,8 +57,9 @@ function buildTwiml(): string {
     const farewellFr = "Merci, nous vous rappellerons sous peu.";
     const farewellEn = "Thanks, we will get back to you shortly.";
 
-    // No `action` on <Record> — once recording ends Twilio continues with the
-    // next verbs (farewell + hangup).
+    // <Record action> hands off to /api/voice/recorded once the message ends:
+    // it texts the caller an acknowledgement, emails the owner, and returns
+    // the farewell + hangup TwiML.
     //
     // We do NOT use Twilio's transcribe="true" because Twilio's transcription
     // service is English-only and produced garbled output for French
@@ -69,6 +70,10 @@ function buildTwiml(): string {
   <Say voice="Polly.Chantal" language="fr-CA">${escapeXml(greetingFr)}</Say>
   <Say voice="Polly.Joanna" language="en-US">${escapeXml(greetingEn)}</Say>
   <Record
+    action="/api/voice/recorded"
+    method="POST"
+    recordingStatusCallback="/api/voice/recording-ready"
+    recordingStatusCallbackEvent="completed"
     maxLength="120"
     timeout="5"
     finishOnKey="*"
