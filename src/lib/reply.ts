@@ -19,9 +19,11 @@ import { siteConfig } from "@/lib/site.config";
 export type Lang = "fr" | "en";
 export type Stage = "handoff" | "followup";
 
+// One referral partner on purpose: every customer we send them is a
+// documented lead ("they mentioned Couvreur Gatineau"), which is the opening
+// of the trial pitch. Switch the name here if the target business changes.
 export const REFERRALS = [
   { name: "Toitures Cossette", phone: "819-777-7177", url: "toiturescossette.ca" },
-  { name: "Toitures D.S.", phone: "819-525-9401", url: "toituresds.ca" },
 ];
 
 export function partner(): { name: string; phone?: string; email?: string } | null {
@@ -47,21 +49,21 @@ const brand = (lang: Lang) => siteConfig[lang]?.brandName || siteConfig.city;
 export function smsReply(lang: Lang, stage: Stage): string {
   const p = partner();
   const b = brand(lang);
-  const [a, c] = REFERRALS;
+  const [a] = REFERRALS;
   if (lang === "fr") {
     if (stage === "handoff") {
       if (p) return `${b} : merci, c'est noté! Notre partenaire ${p.name} vous contacte sous peu pour planifier l'inspection et la soumission. Pour toute question : info@${siteConfig.domain}. – Jérôme`;
-      return `${b} : merci, c'est noté! Pour une soumission rapide, voici 2 couvreurs établis en Outaouais : ${a.name} ${a.phone} ou ${c.name} ${c.phone} (les deux offrent un service d'urgence 24/7). Dites que vous venez de ${b}. – Jérôme`;
+      return `${b} : merci, c'est noté! Pour une soumission rapide, appelez notre partenaire ${a.name} au ${a.phone} (urgences 24/7, ${a.url}). Dites que vous venez de ${b}. – Jérôme`;
     }
     if (p) return `${b} : merci! ${p.name} a bien vos coordonnées et vous contacte sous peu. Pour toute autre question : info@${siteConfig.domain}. – Jérôme`;
-    return `${b} : merci! Nos couvreurs recommandés : ${a.name} ${a.phone} · ${c.name} ${c.phone}. Pour toute autre question : info@${siteConfig.domain}. – Jérôme`;
+    return `${b} : merci! Notre partenaire : ${a.name} ${a.phone} (${a.url}). Pour toute autre question : info@${siteConfig.domain}. – Jérôme`;
   }
   if (stage === "handoff") {
     if (p) return `${b}: thanks, got it! Our partner ${p.name} will contact you shortly to schedule the inspection and quote. Questions: info@${siteConfig.domain}. – Jérôme`;
-    return `${b}: thanks, got it! For a fast quote, here are 2 established Outaouais roofers: ${a.name} ${a.phone} or ${c.name} ${c.phone} (both offer 24/7 emergency service). Mention ${b}. – Jérôme`;
+    return `${b}: thanks, got it! For a fast quote, call our partner ${a.name} at ${a.phone} (24/7 emergencies, ${a.url}). Mention ${b}. – Jérôme`;
   }
   if (p) return `${b}: thanks! ${p.name} has your details and will be in touch shortly. Other questions: info@${siteConfig.domain}. – Jérôme`;
-  return `${b}: thanks! Our recommended roofers: ${a.name} ${a.phone} · ${c.name} ${c.phone}. Other questions: info@${siteConfig.domain}. – Jérôme`;
+  return `${b}: thanks! Our partner: ${a.name} ${a.phone} (${a.url}). Other questions: info@${siteConfig.domain}. – Jérôme`;
 }
 
 // Email version of the handoff (form leads). Returns plain text; the caller
@@ -69,17 +71,12 @@ export function smsReply(lang: Lang, stage: Stage): string {
 export function emailHandoff(lang: Lang, firstName: string, comment: string): { subject: string; text: string } {
   const p = partner();
   const b = brand(lang);
-  const [a, c] = REFERRALS;
+  const [a] = REFERRALS;
   const quoted = comment ? (lang === "fr" ? `\n« ${comment} »\n` : `\n"${comment}"\n`) : "";
   if (lang === "fr") {
     const next = p
       ? `Notre partenaire ${p.name} a reçu votre demande et vous contactera sous peu pour planifier l'inspection et vous remettre une soumission.`
-      : `Pour une soumission rapide, voici deux couvreurs établis en Outaouais que nous recommandons :
-
-• ${a.name} — ${a.phone} — ${a.url}
-• ${c.name} — ${c.phone} — ${c.url}
-
-Les deux offrent un service d'urgence 24/7 (fuite, dommages de tempête). Dites-leur que vous venez de ${b}.`;
+      : `Pour une soumission rapide, appelez notre partenaire ${a.name} au ${a.phone} (${a.url}). Ils offrent un service d'urgence 24/7 (fuite, dommages de tempête). Dites-leur que vous venez de ${b}.`;
     return {
       subject: `Votre demande de toiture — ${b}`,
       text: `Bonjour ${firstName},
@@ -97,12 +94,7 @@ ${siteConfig.phoneDisplay} · ${siteConfig.domain}`,
   }
   const next = p
     ? `Our partner ${p.name} has your request and will contact you shortly to schedule the inspection and provide a quote.`
-    : `For a fast quote, here are two established Outaouais roofers we recommend:
-
-• ${a.name} — ${a.phone} — ${a.url}
-• ${c.name} — ${c.phone} — ${c.url}
-
-Both offer 24/7 emergency service (leaks, storm damage). Tell them you came from ${b}.`;
+    : `For a fast quote, call our partner ${a.name} at ${a.phone} (${a.url}). They offer 24/7 emergency service (leaks, storm damage). Tell them you came from ${b}.`;
   return {
     subject: `Your roofing request — ${b}`,
     text: `Hi ${firstName},
